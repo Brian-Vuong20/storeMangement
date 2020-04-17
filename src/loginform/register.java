@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
  */
 public class register {
     
-    public void addRegister(char objective, Integer i, String user_Name, String user_Password, String user_gmail) {
+    public void addRegister(char objective, Integer i, String user_Name, String user_Password) {
         Connection conn = MyConnection.getConnection();
         PreparedStatement ps;
         if(objective == 'i') {
             try {
-                ps = conn.prepareStatement("insert into user (userName, password, gmail) values (?, ?, ?)");
+                ps = conn.prepareStatement("insert into user (userName, password) values (?, ?)");
                 ps.setString(1, user_Name);
                 ps.setString(2, user_Password);
-                ps.setString(3, user_gmail);
+                
                 if(ps.executeUpdate() > 0) {
                     JOptionPane.showMessageDialog(null, "You successfully registered your account");
                 }
